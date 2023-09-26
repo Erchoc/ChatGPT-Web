@@ -5,7 +5,7 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 0 * * *" # every day
+    - cron: "0 0 * * 0" # 每周日0点同步
   workflow_dispatch:
 
 jobs:
