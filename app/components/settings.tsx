@@ -670,30 +670,34 @@ export function Settings() {
             </Popover>
           </ListItem>
 
-          <ListItem
-            title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
-            subTitle={
-              checkingUpdate
-                ? Locale.Settings.Update.IsChecking
-                : hasNewVersion
-                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
-                : Locale.Settings.Update.IsLatest
-            }
-          >
-            {checkingUpdate ? (
-              <LoadingIcon />
-            ) : hasNewVersion ? (
-              <Link href={updateUrl} target="_blank" className="link">
-                {Locale.Settings.Update.GoToUpdate}
-              </Link>
-            ) : (
-              <IconButton
-                icon={<ResetIcon></ResetIcon>}
-                text={Locale.Settings.Update.CheckUpdate}
-                onClick={() => checkUpdate(true)}
-              />
-            )}
-          </ListItem>
+          <div style={{ display: "none" }}>
+            <ListItem
+              title={Locale.Settings.Update.Version(
+                currentVersion ?? "unknown",
+              )}
+              subTitle={
+                checkingUpdate
+                  ? Locale.Settings.Update.IsChecking
+                  : hasNewVersion
+                  ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
+                  : Locale.Settings.Update.IsLatest
+              }
+            >
+              {checkingUpdate ? (
+                <LoadingIcon />
+              ) : hasNewVersion ? (
+                <Link href={updateUrl} target="_blank" className="link">
+                  {Locale.Settings.Update.GoToUpdate}
+                </Link>
+              ) : (
+                <IconButton
+                  icon={<ResetIcon></ResetIcon>}
+                  text={Locale.Settings.Update.CheckUpdate}
+                  onClick={() => checkUpdate(true)}
+                />
+              )}
+            </ListItem>
+          </div>
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
@@ -730,30 +734,32 @@ export function Settings() {
             </Select>
           </ListItem>
 
-          <ListItem title={Locale.Settings.Lang.Name}>
-            <Select
-              value={getLang()}
-              onChange={(e) => {
-                changeLang(e.target.value as any);
-              }}
-            >
-              {AllLangs.map((lang) => (
-                <option value={lang} key={lang}>
-                  {ALL_LANG_OPTIONS[lang]}
-                </option>
-              ))}
-            </Select>
-          </ListItem>
+          <div style={{ display: "none" }}>
+            <ListItem title={Locale.Settings.Lang.Name}>
+              <Select
+                value={getLang()}
+                onChange={(e) => {
+                  changeLang(e.target.value as any);
+                }}
+              >
+                {AllLangs.map((lang) => (
+                  <option value={lang} key={lang}>
+                    {ALL_LANG_OPTIONS[lang]}
+                  </option>
+                ))}
+              </Select>
+            </ListItem>
+          </div>
 
           <ListItem
             title={Locale.Settings.FontSize.Title}
             subTitle={Locale.Settings.FontSize.SubTitle}
           >
             <InputRange
-              title={`${config.fontSize ?? 14}px`}
+              title={`${config.fontSize ?? 16}px`}
               value={config.fontSize}
               min="12"
-              max="18"
+              max="20"
               step="1"
               onChange={(e) =>
                 updateConfig(
@@ -764,37 +770,42 @@ export function Settings() {
             ></InputRange>
           </ListItem>
 
-          <ListItem
-            title={Locale.Settings.AutoGenerateTitle.Title}
-            subTitle={Locale.Settings.AutoGenerateTitle.SubTitle}
-          >
-            <input
-              type="checkbox"
-              checked={config.enableAutoGenerateTitle}
-              onChange={(e) =>
-                updateConfig(
-                  (config) =>
-                    (config.enableAutoGenerateTitle = e.currentTarget.checked),
-                )
-              }
-            ></input>
-          </ListItem>
+          <div style={{ display: "none" }}>
+            <ListItem
+              title={Locale.Settings.AutoGenerateTitle.Title}
+              subTitle={Locale.Settings.AutoGenerateTitle.SubTitle}
+            >
+              <input
+                type="checkbox"
+                checked={config.enableAutoGenerateTitle}
+                onChange={(e) =>
+                  updateConfig(
+                    (config) =>
+                      (config.enableAutoGenerateTitle =
+                        e.currentTarget.checked),
+                  )
+                }
+              ></input>
+            </ListItem>
+          </div>
 
-          <ListItem
-            title={Locale.Settings.SendPreviewBubble.Title}
-            subTitle={Locale.Settings.SendPreviewBubble.SubTitle}
-          >
-            <input
-              type="checkbox"
-              checked={config.sendPreviewBubble}
-              onChange={(e) =>
-                updateConfig(
-                  (config) =>
-                    (config.sendPreviewBubble = e.currentTarget.checked),
-                )
-              }
-            ></input>
-          </ListItem>
+          <div style={{ display: "none" }}>
+            <ListItem
+              title={Locale.Settings.SendPreviewBubble.Title}
+              subTitle={Locale.Settings.SendPreviewBubble.SubTitle}
+            >
+              <input
+                type="checkbox"
+                checked={config.sendPreviewBubble}
+                onChange={(e) =>
+                  updateConfig(
+                    (config) =>
+                      (config.sendPreviewBubble = e.currentTarget.checked),
+                  )
+                }
+              ></input>
+            </ListItem>
+          </div>
         </List>
 
         <SyncItems />

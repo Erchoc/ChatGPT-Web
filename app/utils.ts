@@ -126,6 +126,10 @@ export function useWindowSize() {
 }
 
 export const MOBILE_MAX_WIDTH = 600;
+
+/**
+ * 窗口宽度小于 600px 则认为是手机访问
+ */
 export function useMobileScreen() {
   const { width } = useWindowSize();
 

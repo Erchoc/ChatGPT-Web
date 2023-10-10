@@ -145,17 +145,17 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          ChatGPT Next
+          AI Robot
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          Build your own AI assistant.
+          你的专属聊天机器人, 工作助理
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
         </div>
       </div>
 
-      <div className={styles["sidebar-header-bar"]}>
+      <div style={{ display: "none" }} className={styles["sidebar-header-bar"]}>
         <IconButton
           icon={<MaskIcon />}
           text={shouldNarrow ? undefined : Locale.Mask.Name}
